@@ -1,0 +1,43 @@
+Cada plato es una carpeta
+Cada superficie es un archivo
+Cada pista es una fila del archivo
+
+Cada sector es un espacio de la fila
+que puede ser contado en bytes
+
+create table students (int id, name varchar(20))
+
+TASKS:
+    1. Crear el eschema
+        students
+    2. Crear la tabla
+
+
+
+PLATO1
+
+    // esta superficie estará ocupada solo para elementos predefinidos
+    SUPERFICIE1 
+        PISTAS -> {
+            ...SECTORES
+        }
+
+        1. Eschemas
+        2. indexacion
+
+    SUPERFICIE2
+        PISTAS
+
+PLATO2
+
+    SUPERFICIE1
+        PISTAS
+    SUPERFICIE2
+        PISTAS
+
+PLATO3
+
+    SUPERFICIE1
+        PISTAS
+    SUPERFICIE2
+        PISTAS

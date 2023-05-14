@@ -7,6 +7,7 @@ using namespace std;
 
 /**
  * es una lista enlaza circular doble de los sectores
+ * pero tambien forman una lista enlazada dbole en las superficies de los platos
 */
 class Pista {
 public:
@@ -18,18 +19,34 @@ public:
     int tamanoSector;
     Sector * cabezal; // este sector será donde se encuentra ubicado el cabezal
 
-    Pista() {
-        // por defecto el cabezal comienza en null
-        cabezal = nullptr;
-    }
-    ~Pista() {}
+    int cantidadActualSectores; // contador de la cantidad de sectores que tiene la pista
 
-    void setInfoSector(int numSectores, int tamanoSector) {
+    Pista * sig; // como es una lista enlaza entonces tiene siguiente
+    Pista * ant;
+
+    Pista(int numSectores, int tamanoSector) {
         this->numSectores = numSectores;
         this->tamanoSector = tamanoSector;
+
+        // por defecto el cabezal comienza en null
+        cabezal = nullptr;
+        ant = sig = nullptr;
+        cantidadActualSectores = 0; 
+
     }
 
-    void createSector(char * value) {
+    ~Pista() {}
+
+    // la pista esta llena
+    bool estaLleno() {
+        return cantidadActualSectores == numSectores;
+    }
+
+    Sector * cargarSector(char * value) {
+
+        // máxmima cantidad de sectores que se pueden alamcenar en esta pista
+        if(cantidadActualSectores == numSectores) return nullptr;
+
         // creo mi nodo sector con el tamaño correpondiente y el valor que pasaron a  la pista
         Sector * newSector = new Sector(this->tamanoSector, value);
         if(cabezal == nullptr) {
@@ -45,6 +62,10 @@ public:
 
             cabezal = newSector;
         }
+
+        cantidadActualSectores++;
+
+        return newSector;
     }
 
     void printPista() {

@@ -1,34 +1,25 @@
 #include<iostream>
 using namespace std;
 
-#include"Pista.h"
+#include"Disco.h"
 
 int main() {
 
-    Pista p;
-    char buffer[1024] = "hola";
+    /*
+    n = numero de platos
+    m = numero de pistas
+    p = numero de sectores
+    q = tamanño del sector
+    */
 
-    /* set informacion de creacion de setores */
-    p.setInfoSector(6, 14);
+    int n = 2, 
+        m = 3,
+        p = 15,
+        q = 18;
 
-    p.createSector(buffer);
+    Disco disco(n, m, p , q);
 
-    strcpy(buffer, "mundo");
-    p.createSector(buffer);
-
-    strcpy(buffer, "como");
-    p.createSector(buffer);
-
-    strcpy(buffer, "estas");
-    p.createSector(buffer);
-
-    strcpy(buffer, "que");
-    p.createSector(buffer);
-
-    strcpy(buffer, "honda");
-    p.createSector(buffer);
-
-    p.printPista();
+    Sector * s = disco.cargarSector("hola");
 
     return 0;
 }
