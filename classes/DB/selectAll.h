@@ -4,6 +4,7 @@
 #include"DB.h"
 #include<iostream>
 #include<iomanip>
+#include"../../utils/myStrtok.h"
 
 void DB::selectAll() {
 
@@ -24,13 +25,15 @@ void DB::selectAll() {
     if (tableFile.is_open()) {
         int pos = 0;
         while (tableFile.getline(this->buffer + pos, this->lenBuffer)) {
-
-            char* token = strtok(this->buffer + pos, ",");
+            int count = 0;
+            char* token = myStrtok(this->buffer + pos, ",");
             while(token != nullptr) {
-                cout<<setw(20)<<left<<token;
-                token = strtok(nullptr, ",");
+                if(token[0] == '\0') cout<<setw(20)<<left<<"null";
+                else cout<<setw(20)<<left<<token;
+                ++count;
+                token = myStrtok(nullptr, ",");
             }
-            cout<<endl;
+            cout<<count<<endl;
 
             pos += tableFile.gcount();
 
