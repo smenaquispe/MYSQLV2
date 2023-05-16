@@ -29,7 +29,7 @@ void DB::createSchema() {
 
         }
     } else {
-        cout<<"Can't open file"<<"./db/schema"<<endl;
+        cout<<"[Error]: Can't open file"<<"./db/schema"<<endl;
     }
     
     schemasFile.close();
