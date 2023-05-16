@@ -55,6 +55,9 @@ public:
     // create table
     void createTable();
 
+    // insert
+    void insert();
+
 
     // when select all you can copy schema
     void copySchema();
@@ -96,5 +99,6 @@ DB::~DB()
 #include"createTable.h"
 #include"copySchema.h"
 #include"createSchema.h"
+#include"insert.h"
 
 #endif

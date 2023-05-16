@@ -23,7 +23,7 @@ void DB::createTable() {
 
     bool save = true;
     bool first = true;
-    char* token = strtok(this->columnNames, ", ");
+    char* token = myStrtok(this->columnNames, ", ");
     tableFile<<token;
     
     while (token != nullptr)
@@ -39,7 +39,7 @@ void DB::createTable() {
         save = !save;
         first = false;
 
-        token = strtok(nullptr, ", ");
+        token = myStrtok(nullptr, ", ");
 
     }
 

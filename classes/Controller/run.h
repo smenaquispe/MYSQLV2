@@ -16,6 +16,7 @@ void Controller::run() {
     char * fileName = nullptr;
 
     // get the regex
+    regex insert_pattern(this->insert_string,regex_constants::icase);
     regex select_pattern(this->select_string,regex_constants::icase);
     regex select_file_pattern(this->select_file_string,regex_constants::icase);
     regex select_where_pattern(this->select_where_string,regex_constants::icase);
@@ -41,8 +42,17 @@ void Controller::run() {
             
             string strInput = string(input);
 
+            // insert table
+            if(regex_match(strInput, match, insert_pattern)){
+                nameTable = strdup(match[1].str().c_str());
+                columnNames = strdup(match[2].str().c_str());
+
+                db->setProps(columnNames, nameTable);
+                db->insert();
+            }
+
             // case create table
-            if(regex_match(strInput, match, create_table_pattern)){
+            else if(regex_match(strInput, match, create_table_pattern)){
                 nameTable = strdup(match[1].str().c_str());
                 columnNames = strdup(match[2].str().c_str());
 
