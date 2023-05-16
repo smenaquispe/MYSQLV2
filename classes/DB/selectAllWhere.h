@@ -2,6 +2,7 @@
 #define SELECT_ALL_WHERE
 
 #include"DB.h"
+#include"../../utils/myStrtok.h"
 
 void DB::selectAllWhere() {
     
@@ -40,7 +41,7 @@ void DB::selectAllWhere() {
             char* tempBuffer = new char[this->lenBuffer];
             strncpy(tempBuffer, this->buffer + pos, this->lenBuffer);
 
-            char* token = strtok(tempBuffer, ",");
+            char* token = myStrtok(tempBuffer, ",");
             while(token != nullptr) {
                 if(columnNumber == columnWhere && strcmp(token, this->columnCompare)) {
                     
@@ -49,7 +50,7 @@ void DB::selectAllWhere() {
                         break;
                     } 
                 } 
-                token = strtok(nullptr, ",");
+                token = myStrtok(nullptr, ",");
                 ++columnNumber;
             }
 
@@ -60,10 +61,11 @@ void DB::selectAllWhere() {
                 char* tempBuffer = new char[this->lenBuffer];
                 strncpy(tempBuffer, this->buffer + pos, this->lenBuffer);
 
-                char* token = strtok(tempBuffer, ",");
+                char* token = myStrtok(tempBuffer, ",");
                 while(token != nullptr) {
-                    cout<<setw(20)<<left<<token;
-                    token = strtok(nullptr, ",");
+                    if(token[0] == '\0') cout<<setw(20)<<left<<"null";
+                    else cout<<setw(20)<<left<<token;
+                    token = myStrtok(nullptr, ",");
                 }   
 
                 cout<<endl;

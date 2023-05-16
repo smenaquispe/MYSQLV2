@@ -1,3 +1,4 @@
 students,name,str,id,int,dept,str 
 depts,name,str,office,str
 xd,name,str,id,int
+titanic,PassengerId,int,Survived,bool,Pclass,str,Name,str,Sex,str,Age,int,SibSp,str,Parch,str,Ticket,int,Fare,str,Cabin,int,Embarked,int

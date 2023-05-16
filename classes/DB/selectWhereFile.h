@@ -2,6 +2,7 @@
 #define SELECT_WHERE_FILE
 
 #include"DB.h"
+#include"../../utils/myStrtok.h"
 
 void DB::selectWhereFile() {
         // if table doesnt exist
@@ -53,7 +54,7 @@ void DB::selectWhereFile() {
             char* tempBuffer = new char[this->lenBuffer];
             strncpy(tempBuffer, this->buffer + pos, this->lenBuffer);
 
-            char* token = strtok(tempBuffer, ",");
+            char* token = myStrtok(tempBuffer, ",");
             while(token != nullptr) {
                 if(columnNumber == columnWhere && strcmp(token, this->columnCompare)) {
                     if(condition(token, this->valueCompare)) {
@@ -61,7 +62,7 @@ void DB::selectWhereFile() {
                         break;
                     } 
                 } 
-                token = strtok(nullptr, ",");
+                token = myStrtok(nullptr, ",");
                 ++columnNumber;
             }
 
@@ -72,7 +73,7 @@ void DB::selectWhereFile() {
                 char* tempBuffer = new char[this->lenBuffer];
                 strncpy(tempBuffer, this->buffer + pos, this->lenBuffer);
 
-                char* token = strtok(tempBuffer, ",");
+                char* token = myStrtok(tempBuffer, ",");
                 if(first) {
                     bool firstRow = true;
                     while(token != nullptr) {
@@ -84,12 +85,13 @@ void DB::selectWhereFile() {
                                 firstRow = false;
                             }
                             newTable<<token;
-                            cout<<setw(20)<<left<<token;
+                            if(token[0] == '\0') cout<<setw(20)<<left<<"null";
+                            else cout<<setw(20)<<left<<token;
                         } else {
                             columnMap[iterator] = 0;
                         }
                         ++iterator;
-                        token = strtok(nullptr, ",");
+                        token = myStrtok(nullptr, ",");
                     }   
                     first = false;
                 } else {
@@ -103,10 +105,11 @@ void DB::selectWhereFile() {
                                 firstRow = false;
                             }
                             newTable<<token;
-                            cout<<setw(20)<<left<<token;
+                            if(token[0] == '\0') cout<<setw(20)<<left<<"null";
+                            else cout<<setw(20)<<left<<token;
                         }
                         ++iterator;
-                        token = strtok(nullptr, ",");
+                        token = myStrtok(nullptr, ",");
                     }
                 }
 

@@ -2,6 +2,7 @@
 #define SELECT_ALL_WHERE_FILE
 
 #include"DB.h"
+#include"../../utils/myStrtok.h"
 
 void DB::selectAllWhereFile() {
         
@@ -48,7 +49,7 @@ void DB::selectAllWhereFile() {
             char* tempBuffer = new char[this->lenBuffer];
             strncpy(tempBuffer, this->buffer + pos, this->lenBuffer);
 
-            char* token = strtok(tempBuffer, ",");
+            char* token = myStrtok(tempBuffer, ",");
             while(token != nullptr) {
                 if(columnNumber == columnWhere && strcmp(token, this->columnCompare)) {
                     
@@ -57,7 +58,7 @@ void DB::selectAllWhereFile() {
                         break;
                     } 
                 } 
-                token = strtok(nullptr, ",");
+                token = myStrtok(nullptr, ",");
                 ++columnNumber;
             }
 
@@ -69,16 +70,17 @@ void DB::selectAllWhereFile() {
                 strncpy(tempBuffer, this->buffer + pos, this->lenBuffer);
                 
                 int firstRow = true;
-                char* token = strtok(tempBuffer, ",");
+                char* token = myStrtok(tempBuffer, ",");
                 while(token != nullptr) {
                     if(!firstRow) {
                         newTable<<",";
                     } else {
                         firstRow = false;
                     }
-                    cout<<setw(20)<<left<<token;
+                    if(token[0] == '\0') cout<<setw(20)<<left<<"null";
+                    else cout<<setw(20)<<left<<token;
                     newTable<<token;
-                    token = strtok(nullptr, ",");
+                    token = myStrtok(nullptr, ",");
                 }   
 
                 cout<<endl;

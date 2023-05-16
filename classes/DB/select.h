@@ -2,6 +2,7 @@
 #define SELECT
 
 #include"DB.h"
+#include"../../utils/myStrtok.h"
 
 void DB::select() {
     // if table doesnt exist
@@ -28,18 +29,19 @@ void DB::select() {
         int pos = 0;
         while (tableFile.getline(this->buffer + pos, this->lenBuffer)) {
             
-            char* token = strtok(this->buffer + pos, ",");
+            char* token = myStrtok(this->buffer + pos, ",");
 
             if(first) {
                 while(token != nullptr) {
                     if(strstr(this->columnNames, token)) {
                         columnMap[iterator] = 1;
-                        cout<<setw(20)<<left<<token;
+                        if(token[0] == '\0') cout<<setw(20)<<left<<"null";
+                        else cout<<setw(20)<<left<<token;
                     } else {
                         columnMap[iterator] = 0;
                     }
                     ++iterator;
-                    token = strtok(nullptr, ",");
+                    token = myStrtok(nullptr, ",");
                 }
 
                 cout<<endl;
@@ -47,10 +49,12 @@ void DB::select() {
             } else {
                 iterator = 0;
                 while(token != nullptr) {
-                    if(columnMap[iterator])
-                        cout<<setw(20)<<left<<token;
+                    if(columnMap[iterator]) {
+                        if(token[0] == '\0') cout<<setw(20)<<left<<"null";
+                        else cout<<setw(20)<<left<<token;
+                    }
                     ++iterator;
-                    token = strtok(nullptr, ",");
+                    token = myStrtok(nullptr, ",");
                 }
                 cout<<endl;
             }
