@@ -17,6 +17,7 @@ void Controller::run() {
 
     // get the regex
     regex select_pattern(this->select_string,regex_constants::icase);
+    regex select_file_pattern(this->select_file_string,regex_constants::icase);
     regex select_where_pattern(this->select_where_string,regex_constants::icase);
     regex select_where_file_pattern(this->select_where_file_string,regex_constants::icase);
     regex create_table_pattern(this->create_table_string,regex_constants::icase);
@@ -74,6 +75,16 @@ void Controller::run() {
 
                 if(!strcmp(columnNames, "*")) db->selectAllWhere();
                 else db->selectWhere();
+            }
+
+            // case of select and save in file
+            else if(regex_match(strInput, match, select_file_pattern)) {
+                columnNames = strdup(match[1].str().c_str());
+                nameTable = strdup(match[2].str().c_str());
+                fileName = strdup(match[3].str().c_str());
+
+                db->setProps(columnNames, nameTable, fileName, true);
+                db->selectFile();
             }
             
             // case of just select

@@ -16,6 +16,7 @@ private:
     const char * init_string = "MEGATRON3000";
     const char * quit_string = "QUIT";
     const char * select_string = "& SELECT (.*) FROM (.*) #";
+    const char * select_file_string = "& SELECT (.*) FROM (.*) \\| (.*) #";
     const char * select_where_string = "& SELECT (.*) FROM (.*) WHERE (.*) #";
     const char * select_where_file_string = "& SELECT (.*) FROM (.*) WHERE (.*) \\| (.*) #";
     const char * create_table_string = "& CREATE TABLE (.*) \\((.*)\\) #";

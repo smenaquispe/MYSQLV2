@@ -8,6 +8,12 @@ void DB::setProps(char * columNames, char * tableName) {
     this->tableName = tableName;
 }
 
+void DB::setProps(char * columNames, char * tableName, char * fileName, bool notClause) {
+    this->columnNames = columNames;
+    this->tableName = tableName;
+    this->fileName = fileName;
+}
+
 void DB::setProps(char * columNames, char * tableName, char * clause) {
     this->columnNames = columNames;
     this->tableName = tableName;

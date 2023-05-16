@@ -29,6 +29,8 @@ public:
 
     // firs just select column and table
     void setProps(char *, char *);
+    // set props but select need 3 props, so bool is for decoration
+    void setProps(char *, char *, char *, bool);
     // secon select column, table and where clause
     void setProps(char *, char *, char *);
     // thir seledt, columns table clause and file to save
@@ -38,6 +40,8 @@ public:
     void selectAll();
     // select
     void select();
+    // select some columns and save in file
+    void selectFile();
     // select all where
     void selectAllWhere();
     // select where
@@ -85,6 +89,7 @@ DB::~DB()
 #include"selectAll.h"
 #include"selectAllWhere.h"
 #include"select.h"
+#include"selectFile.h"
 #include"selectWhere.h"
 #include"selectAllWhereFile.h"
 #include"selectWhereFile.h"
