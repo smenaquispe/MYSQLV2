@@ -48,7 +48,7 @@ void DB::selectAllWhereFile() {
             char* tempBuffer = new char[this->lenBuffer];
             strncpy(tempBuffer, this->buffer + pos, this->lenBuffer);
 
-            char* token = strtok(tempBuffer, " # ");
+            char* token = strtok(tempBuffer, ",");
             while(token != nullptr) {
                 if(columnNumber == columnWhere && strcmp(token, this->columnCompare)) {
                     
@@ -57,7 +57,7 @@ void DB::selectAllWhereFile() {
                         break;
                     } 
                 } 
-                token = strtok(nullptr, " # ");
+                token = strtok(nullptr, ",");
                 ++columnNumber;
             }
 
@@ -69,16 +69,16 @@ void DB::selectAllWhereFile() {
                 strncpy(tempBuffer, this->buffer + pos, this->lenBuffer);
                 
                 int firstRow = true;
-                char* token = strtok(tempBuffer, " # ");
+                char* token = strtok(tempBuffer, ",");
                 while(token != nullptr) {
                     if(!firstRow) {
-                        newTable<<" # ";
+                        newTable<<",";
                     } else {
                         firstRow = false;
                     }
                     cout<<setw(20)<<left<<token;
                     newTable<<token;
-                    token = strtok(nullptr, " # ");
+                    token = strtok(nullptr, ",");
                 }   
 
                 cout<<endl;

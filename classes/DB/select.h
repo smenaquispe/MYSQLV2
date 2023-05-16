@@ -28,7 +28,7 @@ void DB::select() {
         int pos = 0;
         while (tableFile.getline(this->buffer + pos, this->lenBuffer)) {
             
-            char* token = strtok(this->buffer + pos, " # ");
+            char* token = strtok(this->buffer + pos, ",");
 
             if(first) {
                 while(token != nullptr) {
@@ -39,7 +39,7 @@ void DB::select() {
                         columnMap[iterator] = 0;
                     }
                     ++iterator;
-                    token = strtok(nullptr, " # ");
+                    token = strtok(nullptr, ",");
                 }
 
                 cout<<endl;
@@ -50,7 +50,7 @@ void DB::select() {
                     if(columnMap[iterator])
                         cout<<setw(20)<<left<<token;
                     ++iterator;
-                    token = strtok(nullptr, " # ");
+                    token = strtok(nullptr, ",");
                 }
                 cout<<endl;
             }

@@ -1,6 +1,6 @@
-name # id # dept
-Smith # 123 # CS
-Smith # 124 # CS
-Jones # 522 # EE
-Richs # 100 # CS
-Smith # 124 # CS
+name,id,dept
+Smith,123,CS
+Smith,124,CS
+Jones,522,EE
+Richs,100,CS
+Smith,124,CS

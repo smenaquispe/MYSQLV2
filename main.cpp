@@ -4,8 +4,6 @@ using namespace std;
 #include"./classes/Controller/Controller.h"
 #include"./classes/DB/DB.h"
 
-#include"./disco/Disco.h"
-
 /**
  * 
  * Requerimientos:
@@ -28,15 +26,6 @@ int main() {
 
     DB * db = new DB;   
     Controller *controller = new Controller(db);
-
-
-    
-    int n = 2, 
-        m = 3,
-        p = 15,
-        q = 18;
-    Disco * disco = new Disco(n,m,p,q);
-
     controller->run();
 
     delete db;

@@ -25,10 +25,10 @@ void DB::selectAll() {
         int pos = 0;
         while (tableFile.getline(this->buffer + pos, this->lenBuffer)) {
 
-            char* token = strtok(this->buffer + pos, " # ");
+            char* token = strtok(this->buffer + pos, ",");
             while(token != nullptr) {
                 cout<<setw(20)<<left<<token;
-                token = strtok(nullptr, " # ");
+                token = strtok(nullptr, ",");
             }
             cout<<endl;
 

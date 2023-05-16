@@ -16,7 +16,7 @@ void DB::copySchema() {
             
             char* tempBuffer = new char[this->lenBuffer];
             strncpy(tempBuffer, this->buffer + pos, this->lenBuffer);
-            char* token = strtok(tempBuffer, " # ");
+            char* token = strtok(tempBuffer, ",");
 
             if(!strcmp(token,this->tableName)) {
                 strcpy(tempString, buffer + pos);

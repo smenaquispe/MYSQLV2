@@ -44,7 +44,7 @@ void DB::selectWhere() {
             char* tempBuffer = new char[this->lenBuffer];
             strncpy(tempBuffer, this->buffer + pos, this->lenBuffer);
 
-            char* token = strtok(tempBuffer, " # ");
+            char* token = strtok(tempBuffer, ",");
             while(token != nullptr) {
                 if(columnNumber == columnWhere && strcmp(token, this->columnCompare)) {
                     if(condition(token, this->valueCompare)) {
@@ -52,7 +52,7 @@ void DB::selectWhere() {
                         break;
                     } 
                 } 
-                token = strtok(nullptr, " # ");
+                token = strtok(nullptr, ",");
                 ++columnNumber;
             }
 
@@ -63,7 +63,7 @@ void DB::selectWhere() {
                 char* tempBuffer = new char[this->lenBuffer];
                 strncpy(tempBuffer, this->buffer + pos, this->lenBuffer);
 
-                char* token = strtok(tempBuffer, " # ");
+                char* token = strtok(tempBuffer, ",");
                 if(first) {
                     while(token != nullptr) {
                         if(strstr(this->columnNames, token)) {
@@ -73,7 +73,7 @@ void DB::selectWhere() {
                             columnMap[iterator] = 0;
                         }
                         ++iterator;
-                        token = strtok(nullptr, " # ");
+                        token = strtok(nullptr, ",");
                     }   
                     first = false;
                 } else {
@@ -82,7 +82,7 @@ void DB::selectWhere() {
                         if(columnMap[iterator])
                             cout<<setw(20)<<left<<token;
                         ++iterator;
-                        token = strtok(nullptr, " # ");
+                        token = strtok(nullptr, ",");
                     }
                 }
 

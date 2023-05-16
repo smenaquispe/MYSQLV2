@@ -53,7 +53,7 @@ void DB::selectWhereFile() {
             char* tempBuffer = new char[this->lenBuffer];
             strncpy(tempBuffer, this->buffer + pos, this->lenBuffer);
 
-            char* token = strtok(tempBuffer, " # ");
+            char* token = strtok(tempBuffer, ",");
             while(token != nullptr) {
                 if(columnNumber == columnWhere && strcmp(token, this->columnCompare)) {
                     if(condition(token, this->valueCompare)) {
@@ -61,7 +61,7 @@ void DB::selectWhereFile() {
                         break;
                     } 
                 } 
-                token = strtok(nullptr, " # ");
+                token = strtok(nullptr, ",");
                 ++columnNumber;
             }
 
@@ -72,14 +72,14 @@ void DB::selectWhereFile() {
                 char* tempBuffer = new char[this->lenBuffer];
                 strncpy(tempBuffer, this->buffer + pos, this->lenBuffer);
 
-                char* token = strtok(tempBuffer, " # ");
+                char* token = strtok(tempBuffer, ",");
                 if(first) {
                     bool firstRow = true;
                     while(token != nullptr) {
                         if(strstr(this->columnNames, token)) {
                             columnMap[iterator] = 1;
                             if(!firstRow) {
-                                newTable<<" # ";
+                                newTable<<",";
                             } else {
                                 firstRow = false;
                             }
@@ -89,7 +89,7 @@ void DB::selectWhereFile() {
                             columnMap[iterator] = 0;
                         }
                         ++iterator;
-                        token = strtok(nullptr, " # ");
+                        token = strtok(nullptr, ",");
                     }   
                     first = false;
                 } else {
@@ -98,7 +98,7 @@ void DB::selectWhereFile() {
                     while(token != nullptr) {
                         if(columnMap[iterator]){
                             if(!firstRow) {
-                                newTable<<" # ";
+                                newTable<<",";
                             } else {
                                 firstRow = false;
                             }
@@ -106,7 +106,7 @@ void DB::selectWhereFile() {
                             cout<<setw(20)<<left<<token;
                         }
                         ++iterator;
-                        token = strtok(nullptr, " # ");
+                        token = strtok(nullptr, ",");
                     }
                 }
 

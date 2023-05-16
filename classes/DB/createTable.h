@@ -11,27 +11,25 @@ void DB::createTable() {
         return;
     }
 
-    buffer = this->tableName;
+    strcpy(buffer, tableName);
 
-    cout<<columnNames<<endl;
-
-    char* token = strtok(this->columnNames, ",");
+    char* token = strtok(this->columnNames, ", ");
     while (token != nullptr)
     {
-        strcat(buffer, " # ");
+        strcat(buffer, ",");
         strcat(buffer, token);
-
-        char* tempBuffer = new char[this->lenBuffer];
-        strncpy(tempBuffer, token, this->lenBuffer);
-        char* token2 = strtok(tempBuffer, " ");
-
-        cout<<token2<<endl;
-
-        token = strtok(nullptr, ",");
+        token = strtok(nullptr, ", ");
     }
-    
 
-    cout<<buffer;
+    ofstream schemaFile("./db/schema", ios::app);
+    if(schemaFile.is_open()) {
+        schemaFile<<buffer<<endl;
+        schemaFile.close();
+
+
+    } else {
+        cout<<"[Error]: can't open schema file"<<endl;
+    }
 
 }
 

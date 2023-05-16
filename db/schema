@@ -1,3 +1,3 @@
-students # name # str # id # int # dept # str 
-depts # name # str # office # str
-xd # name # str # id # int
+students,name,str,id,int,dept,str 
+depts,name,str,office,str
+xd,name,str,id,int

@@ -40,7 +40,7 @@ void DB::selectAllWhere() {
             char* tempBuffer = new char[this->lenBuffer];
             strncpy(tempBuffer, this->buffer + pos, this->lenBuffer);
 
-            char* token = strtok(tempBuffer, " # ");
+            char* token = strtok(tempBuffer, ",");
             while(token != nullptr) {
                 if(columnNumber == columnWhere && strcmp(token, this->columnCompare)) {
                     
@@ -49,7 +49,7 @@ void DB::selectAllWhere() {
                         break;
                     } 
                 } 
-                token = strtok(nullptr, " # ");
+                token = strtok(nullptr, ",");
                 ++columnNumber;
             }
 
@@ -60,10 +60,10 @@ void DB::selectAllWhere() {
                 char* tempBuffer = new char[this->lenBuffer];
                 strncpy(tempBuffer, this->buffer + pos, this->lenBuffer);
 
-                char* token = strtok(tempBuffer, " # ");
+                char* token = strtok(tempBuffer, ",");
                 while(token != nullptr) {
                     cout<<setw(20)<<left<<token;
-                    token = strtok(nullptr, " # ");
+                    token = strtok(nullptr, ",");
                 }   
 
                 cout<<endl;

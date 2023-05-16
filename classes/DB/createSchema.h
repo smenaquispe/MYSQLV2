@@ -15,7 +15,7 @@ void DB::createSchema() {
             
             char* tempBuffer = new char[this->lenBuffer];
             strncpy(tempBuffer, this->buffer + pos, this->lenBuffer);
-            char* token = strtok(tempBuffer, " # ");
+            char* token = strtok(tempBuffer, ",");
 
             if(!strcmp(token,this->tableName)) {
                 strcpy(tempString, buffer + pos);
@@ -45,7 +45,7 @@ void DB::createSchema() {
     }
 
     char otherTempString[256] = "";
-    char * token = strtok(tempString, " # ");
+    char * token = strtok(tempString, ",");
     int count = 0;
     bool sig = false;
     while (token != nullptr)
@@ -54,19 +54,19 @@ void DB::createSchema() {
             strcat(otherTempString, token);
         } else {
             if(sig) {
-                strcat(otherTempString, " # ");
+                strcat(otherTempString, ",");
                 strcat(otherTempString, token);
                 sig = false;
             }
             if(strstr(this->columnNames, token)) {
-                strcat(otherTempString, " # ");
+                strcat(otherTempString, ",");
                 strcat(otherTempString, token);
                 sig = true;
             }
         }
 
         ++count;
-        token = strtok(nullptr, " # ");
+        token = strtok(nullptr, ",");
     }
     
     
